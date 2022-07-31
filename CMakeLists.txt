@@ -5,7 +5,11 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("PacManV2")
 
-# Добавьте источник в исполняемый файл этого проекта.
-add_executable (PacManV2 "PacManV2.cpp" "PacManV2.h")
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# TODO: Добавьте тесты и целевые объекты, если это необходимо.
+# Добавьте источник в исполняемый файл этого проекта.
+add_executable (PacManV2 "PacManV2.cpp" "PacManV2.h" "Modle/filereader.h" "Modle/filereader.cpp" "Modle/datadesc.h" "Modle/modelexsepsion.h")
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/level1.txt
+	${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
