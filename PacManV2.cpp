@@ -20,19 +20,19 @@ int main()
 			cout << "fail open" << endl;
 		
 		while (!(reader.is_end()))
-			cout << reader.readline() << endl;
+			cout << reader.read_line() << endl;
 
 		if (reader.close())
 			cout << "fail close" << endl;
 		
 	}
-	catch (WrongFileNameExeption e) {
+	catch (WrongFileNameExсeption e) {
 		cout << e.what() << "\n";
 	}
-	catch (NoSuchFileExeption e) {
+	catch (NoSuchFileExсeption e) {
 		cout << e.what() << "\n";
 	}
-	catch (FileOpenExeption e) {
+	catch (FileOpenExсeption e) {
 		cout << e.what() << "\n";
 	}
 	return 0;

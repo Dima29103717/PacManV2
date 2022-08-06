@@ -7,13 +7,13 @@ FileReader::FileReader(const std::string& file_name)
 	else
 	{
 		if (!(this->__check_file_name(file_name)))
-			throw WrongFileNameExeption(file_name);
+			throw WrongFileNameExñeption(file_name);
 		if(!(this->__is_exist(file_name)))
-			throw NoSuchFileExeption(file_name);
+			throw NoSuchFileExñeption(file_name);
 
 		this->__stream = new std::ifstream(file_name);
 		if(this->__stream->fail())
-			throw FileOpenExeption(file_name);
+			throw FileOpenExñeption(file_name);
 	}
 }
 
@@ -40,29 +40,28 @@ bool FileReader::open(const std::string& file_name)
 		this->__stream->close();
 	
 	if (!(this->__check_file_name(file_name)))
-		throw WrongFileNameExeption(file_name);
+		throw WrongFileNameExñeption(file_name);
 
 	if (!(this->__is_exist(file_name)))
-		throw NoSuchFileExeption(file_name);
+		throw NoSuchFileExñeption(file_name);
 
 	this->__stream->open(file_name);
 
-	return __stream->is_open();
+	return this->__stream->good();
 }
 
 bool FileReader::close()
 {	
 	if (this->__stream->is_open()) {
 		this->__stream->close();
-		if (!(this->__stream->is_open()))
-			return true;
-		else
-		{
-			throw FileOpenExeption("fail is no close");
+		return !(this->__stream->good());
+		if (!(this->__stream->is_open())){
+			throw FileOpenExñeption("fail is no close");
+			return !(this->__stream->good());
 		}
 	}
 	else
-		throw FileOpenExeption("fail was close");	
+		return this->__stream->good();
 }
 
 bool FileReader::is_open()
@@ -75,10 +74,10 @@ bool FileReader::is_end()
 	return this->__stream->eof();
 }
 
-std::string FileReader::readline()
+std::string FileReader::read_line()
 {
-	if ((!(this->__stream->is_open())) && (this->__stream->eof()))
-		throw FileReadExeption("Fail is over or stream is not open");
+	if ((!(this->__stream->is_open())) || (this->__stream->eof()))
+		throw FileReadExñeption("Fail is over or stream is not open");
 
 	
 	std::string str;

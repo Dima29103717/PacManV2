@@ -27,5 +27,5 @@ class FileReader {
 		bool close();
 		bool is_open();
 		bool is_end();
-		std::string readline();
+		std::string read_line();
 };
