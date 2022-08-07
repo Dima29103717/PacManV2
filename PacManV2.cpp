@@ -21,7 +21,6 @@ int main()
 		
 		while (!(reader.is_end()))
 			cout << reader.read_line() << endl;
-
 		if (reader.close())
 			cout << "fail close" << endl;
 		
@@ -33,6 +32,9 @@ int main()
 		cout << e.what() << "\n";
 	}
 	catch (FileOpenExсeption e) {
+		cout << e.what() << "\n";
+	}
+	catch (FileReadExсeption e) {
 		cout << e.what() << "\n";
 	}
 	return 0;

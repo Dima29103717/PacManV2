@@ -54,14 +54,10 @@ bool FileReader::close()
 {	
 	if (this->__stream->is_open()) {
 		this->__stream->close();
-		return !(this->__stream->good());
-		if (!(this->__stream->is_open())){
-			throw FileOpenExñeption("fail is no close");
-			return !(this->__stream->good());
-		}
+		return this->__stream->good();
 	}
 	else
-		return this->__stream->good();
+		return true;
 }
 
 bool FileReader::is_open()
@@ -78,7 +74,7 @@ std::string FileReader::read_line()
 {
 	if ((!(this->__stream->is_open())) || (this->__stream->eof()))
 		throw FileReadExñeption("Fail is over or stream is not open");
-
+	
 	
 	std::string str;
 	std::getline(*(this->__stream), str, '\n');
